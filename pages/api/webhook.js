@@ -16,7 +16,7 @@ export default async function handler(req, res) {
     event = stripe.webhooks.constructEvent(
       await buffer(req),
       sig,
-      endpointSecret
+      process.env.WEBHOOK
     );
   } catch (err) {
     res.status(400).send(`Webhook Error: ${err.message}`);
